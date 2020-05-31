@@ -15,12 +15,12 @@
 /**
  * Adds a random greeting to the page.
  */
-function addRandomGreeting() {
-  const greetings =
-      ['Hello, my best TV show is Game Of Thrones, and I am Team Stark!!'];
+function addMessage() {
+  const messages =
+      [ "Your respose has been received."];
 
   // Pick a random greeting.
-  const greeting = greetings[Math.floor(Math.random() * greetings.length)];
+  const greeting = messages[Math.floor(Math.random() * messages.length)];
 
   // Add it to the page.
   const greetingContainer = document.getElementById('greeting-container');

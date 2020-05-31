@@ -1,28 +1,39 @@
+<!--This is the Contact Me Page. 
+    Created by Adedeji Adebisi 
+    Date: 05/25/2020
+-->
 <!DOCTYPE html>
 <html>
 <head>
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <title>Adedeji Portfolio</title>
+    <!--Reference to Bootstrap Stylesheet -->
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.0/css/bootstrap.min.css" integrity="sha384-9aIt2nRpC12Uk9gS9baDl411NQApFmC26EwAOH8WgZl5MYYxFfc+NcPb1dKGj7Sk" crossorigin="anonymous">
     <link rel="stylesheet" href="contact.css">
 </head>
+<!--The body contains a nav bar,a container divided into two columns,
+     and a footer -->
 <body>
+    <!-- Nav Bar -->
     <ul class="nav">
         <li><a href="index.html">Home</a></li>
         <li><a href="aboutMe.html">About Me</a></li>
         <li><a href="../Files/resume.pdf" target="_blank">Resume</a></li>  
         <li><a href="contact.html">Contact</a></li>
     </ul>
-
+    <!--Container for Map image and Leave message section -->
     <div class="container">
         <div style="text-align:center">
             <h2>Contact Me</h2>
             <p>If you ever find yourself around, stop by for coffee</p>
         </div>
+        <!--First row defines the image of my Location on map
+            and a badge to my linkedIn profile embed in buttom corner -->
         <div class="row">
             <div class="column">
             <img src="../images/map.png" style="width:100%">
                 <br></br>
+            <!-- Embedded LinkedIn badge -->    
             <div class="LI-profile-badge"  data-version="v1" data-size="large" 
             data-locale="en_US" data-type="vertical" data-theme="dark" 
             data-vanity="adedeji-adebisi-912690194"><a class="LI-simple-link" 
@@ -30,6 +41,7 @@
             Adedeji Adebisi</a></div>
             <script type="text/javascript" src="https://platform.linkedin.com/badges/js/profile.js" async defer></script>
             </div>
+            <!--Second column contains a form for users and textarea to leave a message -->
             <div class="column">
                 <form action="response.html">
                     <label for="fname">First Name</label>
@@ -49,6 +61,7 @@
             </div>
         </div>
     </div>
+    <!--Footer -->
     <footer class="page-footer font-small blue">
 
          <!-- Copyright -->

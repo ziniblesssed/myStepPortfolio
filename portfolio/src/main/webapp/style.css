@@ -1,5 +1,5 @@
 article {
-        padding-top: 0px;
+    padding-top: 0px;
 }
 h1 {
     font: lato-bold;
@@ -16,8 +16,8 @@ h1 {
     display: flow-root;
 }
 .nav li {
-  display: inline-block;
-  padding: 10px;
+    display: inline-block;
+    padding: 10px;
 }
 .nav a {
     float: center;
@@ -25,17 +25,14 @@ h1 {
     text-align: center;
     padding: 14px 16px;
     text-decoration: none;
-
 }
 .nav a:hover {
-  background-color: #ddd;
-  color: black;
+    background-color: #ddd;
+    color: black;
 }
-
-/* Active/current link */
 .nav a.active {
-  background-color: #666;
-  color: white;
+    background-color: #666;
+    color: white;
 }
 body {
     background-image: "images/bg.jpg";
@@ -75,10 +72,10 @@ body {
     display: flex !important;
 }
 .columns {
-  float: left;
-  width: 50%;
-  padding: 10px;
-  height: 500px; 
+    float: left;
+    width: 50%;
+    padding: 10px;
+    height: 500px; 
 }
 .columns img {
     width: 100%;
@@ -87,46 +84,39 @@ body {
     text-align: center;
     padding-bottom: 30px;
 }
-
-/* Clear floats after the columns */
 .rows:after {
-  content: "";
-  display: table;
-  clear: both;
+    content: "";
+    display: table;
+    clear: both;
 }
 .rows{
     padding-top: inherit;
 }
 .footer {
-  padding: 20px;
-  text-align: center;
-  background: #ddd;
+    padding: 20px;
+    text-align: center;
+    background: #ddd;
 }
-
 .fa {
-  padding: 0px;
-  font-size: 30px;
-  width: 50px;
-  text-align: center;
-  text-decoration: none;
-  margin: 5px 2px;
+    padding: 0px;
+    font-size: 30px;
+    width: 50px;
+    text-align: center;
+    text-decoration: none;
+    margin: 5px 2px;
 }
-
 .fa:hover {
     opacity: 0.7;
 }
-
-
 .fa-twitter {
-  background: #55ACEE;
-  color: white;
+    background: #55ACEE;
+    color: white;
 }
-
 .fa-linkedin {
-  background: #007bb5;
-  color: white;
+    background: #007bb5;
+    color: white;
 }
 .fa-instagram {
-  background: #125688;
-  color: white;
+    background: #125688;
+    color: white;
 }
