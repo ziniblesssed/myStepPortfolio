@@ -10,20 +10,30 @@ body {
 
 /* Header/logo Title */
 .header {
-  padding: 80px;
+  padding: 40px 80px;
   text-align: center;
-  background: #1abc9c;
+  background:black;
   color: white;
 }
-
+.header p {
+    color:white;
+}
+.container p{
+    text-align: center;
+    width: 70%;
+    margin-left: auto;
+    margin-right: auto;
+}
 /* Increase the font size of the heading */
 .header h1 {
-  font-size: 40px;
+  font-size: 50px;
+  font-weight: bolder;
+  padding-bottom: 10px;
 }
 
 .nav {
     overflow: hidden;
-    background-color: black; 
+    background-color: grey; 
     list-style-type: none;
     position: sticky;
     text-align: center;

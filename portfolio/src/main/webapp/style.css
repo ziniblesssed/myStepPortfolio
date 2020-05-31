@@ -7,6 +7,13 @@ body {
     margin: 0;
 }
 */
+article {
+        padding-top: 0px;
+}
+h1 {
+    font: lato-bold;
+    font-weight: bolder;
+}
 .nav {
     overflow: hidden;
     background-color: black; 
@@ -55,6 +62,7 @@ body {
 }
 .container {
     padding: 80px 90px;
+    background-color: gainsboro;
 }
 .col-sm  {
     padding: 0 64px;
@@ -70,6 +78,7 @@ body {
 }
 .pad {
     padding-left: 0px;
+    text-align: center;
 }
 .downPic {
     display: flex !important;
