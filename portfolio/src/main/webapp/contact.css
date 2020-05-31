@@ -1,11 +1,9 @@
 body {
-  font-family: Arial, Helvetica, sans-serif;
+    font-family: Arial, Helvetica, sans-serif;
 }
-
 * {
-  box-sizing: border-box;
+    box-sizing: border-box;
 }
-
 .nav {
     overflow: hidden;
     background-color: black; 
@@ -17,8 +15,8 @@ body {
     display: flow-root;
 }
 .nav li {
-  display: inline-block;
-  padding: 10px;
+    display: inline-block;
+    padding: 10px;
 }
 .nav a {
     float: center;
@@ -31,33 +29,33 @@ body {
 
 /* Style inputs */
 input[type=text], select, textarea {
-  width: 100%;
-  padding: 12px;
-  border: 1px solid #ccc;
-  margin-top: 6px;
-  margin-bottom: 16px;
-  resize: vertical;
+    width: 100%;
+    padding: 12px;
+    border: 1px solid #ccc;
+    margin-top: 6px;
+    margin-bottom: 16px;
+    resize: vertical;
 }
 
 input[type=submit] {
-  background-color: #4CAF50;
-  color: white;
-  padding: 12px 20px;
-  border: none;
-  cursor: pointer;
+    background-color: #4CAF50;
+    color: white;
+    padding: 12px 20px;
+    border: none;
+    cursor: pointer;
 }
 
 input[type=submit]:hover {
-  background-color: #45a049;
+    background-color: #45a049;
 }
 
 .fa {
-  padding: 0px;
-  font-size: 30px;
-  width: 50px;
-  text-align: center;
-  text-decoration: none;
-  margin: 5px 2px;
+    padding: 0px;
+    font-size: 30px;
+    width: 50px;
+    text-align: center;
+    text-decoration: none;
+    margin: 5px 2px;
 }
 
 .fa:hover {
@@ -66,43 +64,38 @@ input[type=submit]:hover {
 
 
 .fa-twitter {
-  background: #55ACEE;
-  color: white;
+    background: #55ACEE;
+    color: white;
 }
 
 .fa-linkedin {
-  background: #007bb5;
-  color: white;
+    background: #007bb5;
+    color: white;
 }
-
-
 
 .fa-instagram {
-  background: #125688;
-  color: white;
+    background: #125688;
+    color: white;
 }
-
-
 /* Style the container/contact section */
 .container {
-  border-radius: 5px;
-  background-color: #f2f2f2;
-  padding: 10px;
+    border-radius: 5px;
+    background-color: #f2f2f2;
+    padding: 10px;
 }
-
 /* Create two columns that float next to eachother */
 .column {
-  float: left;
-  width: 50%;
-  margin-top: 6px;
-  padding: 20px;
+    float: left;
+    width: 50%;
+    margin-top: 6px;
+    padding: 20px;
 }
 
 /* Clear floats after the columns */
 .row:after {
-  content: "";
-  display: table;
-  clear: both;
+    content: "";
+    display: table;
+    clear: both;
 }
 
 /* Responsive layout - when the screen is less than 600px wide, make the two columns stack on top of each other instead of next to each other */
@@ -113,9 +106,9 @@ input[type=submit]:hover {
   }
 }
 .footer {
-  padding: 20px;
-  text-align: center;
-  background: #ddd;
+    padding: 20px;
+    text-align: center;
+    background: #ddd;
 }
 h3 {
     padding-top: 30px;
