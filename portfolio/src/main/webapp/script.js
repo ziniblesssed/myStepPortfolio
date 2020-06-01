@@ -15,14 +15,10 @@
 /**
  * Adds a random greeting to the page.
  */
-function addRandomGreeting() {
-  const greetings =
-      ['Hello, my best TV show is Game Of Thrones, and I am Team Stark!!'];
-
-  // Pick a random greeting.
-  const greeting = greetings[Math.floor(Math.random() * greetings.length)];
+function addMessage() {
+  const messages = "Your respose has been received.";
 
   // Add it to the page.
-  const greetingContainer = document.getElementById('greeting-container');
-  greetingContainer.innerText = greeting;
+  const responseContainer = document.getElementById('responseContainer');
+  responseContainer.innerText = messages;
 }

@@ -1,22 +1,114 @@
+<!--This is the Homepage. 
+    Created by Adedeji Adebisi 
+    Date: 05/25/2020
+-->
 <!DOCTYPE html>
 <html>
-  <head>
+<head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <title>Adedeji Portfolio</title>
+    <!--Reference to bootstrap css stylesheet -->
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.0/css/bootstrap.min.css" integrity="sha384-9aIt2nRpC12Uk9gS9baDl411NQApFmC26EwAOH8WgZl5MYYxFfc+NcPb1dKGj7Sk" crossorigin="anonymous">
     <link rel="stylesheet" href="style.css">
     <script src="script.js"></script>
-  </head>
-  <body>
-        <div class="topnav">
-        <a href="#">About me</a>
-        <a href="#">Resume</a>
-        <a href="#">Travels</a>
-        <a href="#">Gallery</a>
-        <a href="#">Contact</a>
-    </div>
-
-
+</head>
+<!--The body contains a nav bar,three containers and a footer -->
+<body>
     
-  </body>
+    <section class="header"></section>
+    <!--Nav Bar with reference to individual pages. Home, aboutMe,
+     Resume and a contact page. -->
+    <ul class="nav">
+        <li><a href="index.html">Home</a></li>
+        <li><a href="aboutMe.html">About Me</a></li>
+        <li><a href="../Files/resume.pdf" target="_blank">Resume</a></li>  
+        <li><a href="contact.html">Contact</a></li>
+    </ul>
+
+    <!--First container for details about Africa, Divided into 2 columns -->
+    <section id="content" class="container"> 
+        <div class="row">
+            <!-- column one describes africa -->
+            <div class="col-sm pad" >
+                <h1> Africa</h1>
+                <article> The continent Africa is a beautiful place and I couldn't be more
+                    proud of being from Africa. As a Nigerian born in the west coast of
+                    Africa, I am pleased to say Africa is blessed. There are 54 countries
+                    in africa and it is the second largest and second-most populated
+                    continent in the world. A lot of people have misconception About
+                    the continent, but when you click on this 
+                    <a href="https://blog.nationalgeographic.org/2013/10/31/getting-to-know-africa-interestingfacts/"
+                    target="_blank" >button</a>, you will be wowed. 
+                </article>
+            </div>
+            <!-- Column two holds an image of Africa -->
+             <div class="col-sm">
+                <img src="../images/af.png";>
+            </div>
+        </div>
+    </section>
+    <!--Second container for details about Nigeria, Divided into 2 columns -->
+    <section id="content" class="container"> 
+        <div class="row">
+            <!-- Column two holds an image of Nigeria  -->
+            <div class="col-sm">
+                <img  style="margin-left:-24px;" src="../images/nge.png";>
+            </div>
+            <!-- column one describes Nigeria -->
+            <div class="col-sm pad" >
+                <h1> Nigeria</h1>
+                 <article>   
+                    Nigeria is the seventh-most populous country in the world, 
+                    home to more than 200 million people.
+                    Africa’s most populous country - Nigeria has a population of 162.5 million people, 
+                    representing 2.35% of the world's population. This means that essentially 1 out of
+                    every 43 people on the planet is a Nigerian!
+                    Multilingual and multicultural - There are over 500 ethnic groups in Nigeria, 
+                    of which the three largest are Hausa, Igbo and Yoruba. Although the lingua franca
+                     (or official language) is English, there are over 600 distinct ethnic languages
+                      spoken in Nigeria.
+                </article>
+            </div>
+        </div>
+    </section>
+    <!--Third container for details about Lagos, Divided into 2 columns -->
+    <section id="content" class="container"> 
+        <div class="row">
+            <!-- column one describes Lagos -->
+            <div class="col-sm pad" >
+                <h1> Lagos</h1>
+                <article> With a population of more than 16 million, Lagos is Africa’s 
+                    most populated city and the 4th most populated city globally.
+                     It is one of the world’s fastest growing cities. People from other 
+                     arts of Nigeria and the neighboring countries migrate to Lagos in 
+                     search of a better life and new economic opportunities.
+                    <br><strong>  Lagos Is The Birthplace Of Many Styles Of Music
+                    </strong></br>The city is famous throughout the continent for its
+                     rich culture and music. A number of styles of music like the Afrobeat,
+                    Nigerian hip-hop, juju, Fuji, Sakara music, etc., have evolved in this
+                    city. The vibrant nightlife of Lagos has also encouraged the music 
+                    scene in the city.
+ 
+                </article>
+            </div>
+            <!-- Column two holds an image of Lagos -->
+            <div class="col-sm">
+                <img src="../images/lgc.png";>
+            </div>
+        </div>
+    </section>
+    <!-- Footer -->
+    <footer class="page-footer font-small blue">
+        <!-- Copyright -->
+        <div class="footer-copyright text-center py-3">© 2020 Copyright:</div>
+    </footer>
+
+    <!-- Reference to Bootstrap JS library -->
+    <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js" integrity="sha384-DfXdz2htPH0lsSSs5nCTpuj/zy4C+OGpamoFVy38MVBnE+IbbVYUew+OrCXaRkfj" crossorigin="anonymous">
+    </script>
+    <script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.0/dist/umd/popper.min.js" integrity="sha384-Q6E9RHvbIyZFJoft+2mJbHaEWldlvI9IOYy5n3zV9zzTtmI3UksdQRVvoxMfooAo"crossorigin="anonymous"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.0/js/bootstrap.min.js" integrity="sha384-OgVRvuATP1z7JjHLkuOU7Xw704+h835Lr+6QL9UvYjZE3Ipu6Tp75j7Bh/kR0JKI" crossorigin="anonymous"></script>
+</body>
 </html>
+ 
