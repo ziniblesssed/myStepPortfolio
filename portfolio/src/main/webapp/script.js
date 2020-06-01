@@ -16,13 +16,9 @@
  * Adds a random greeting to the page.
  */
 function addMessage() {
-  const messages =
-      [ "Your respose has been received."];
-
-  // Pick a random greeting.
-  const greeting = messages[Math.floor(Math.random() * messages.length)];
+  const messages = "Your respose has been received.";
 
   // Add it to the page.
-  const greetingContainer = document.getElementById('greeting-container');
-  greetingContainer.innerText = greeting;
+  const responseContainer = document.getElementById('responseContainer');
+  responseContainer.innerText = messages;
 }

@@ -10,6 +10,7 @@
     <!--Reference to Bootstrap Stylesheet -->
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.0/css/bootstrap.min.css" integrity="sha384-9aIt2nRpC12Uk9gS9baDl411NQApFmC26EwAOH8WgZl5MYYxFfc+NcPb1dKGj7Sk" crossorigin="anonymous">
     <link rel="stylesheet" href="contact.css">
+    <script src="script.js"></script>
 </head>
 <!--The body contains a nav bar,a container divided into two columns,
      and a footer -->
@@ -43,7 +44,7 @@
             </div>
             <!--Second column contains a form for users and textarea to leave a message -->
             <div class="column">
-                <form action="response.html">
+                <form >
                     <label for="fname">First Name</label>
                     <input type="text" id="fname" name="firstname" placeholder="Your name..">
                     <label for="lname">Last Name</label>
@@ -56,11 +57,14 @@
                     </select>
                     <label for="subject">Subject</label>
                     <textarea id="subject" name="subject" placeholder="Write something.." style="height:170px"></textarea>
-                    <input type="submit" value="Submit">
+                    <button onclick="addMessage();" type="button" class="btn btn-dark mb-3">Submit
+                    </button>        
                 </form>
+                <div  id="responseContainer"> </div>
             </div>
         </div>
     </div>
+
     <!--Footer -->
     <footer class="page-footer font-small blue">
 
