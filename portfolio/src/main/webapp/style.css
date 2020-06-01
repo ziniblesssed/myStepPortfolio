@@ -1,5 +1,6 @@
 article {
     padding-top: 0px;
+    text-align: justify;
 }
 h1 {
     font: lato-bold;
@@ -53,7 +54,7 @@ body {
     background-color: gainsboro;
 }
 .col-sm  {
-    padding: 0 64px;
+    padding: 0 30px;
 }
 .col-am  {
     padding: 0;
