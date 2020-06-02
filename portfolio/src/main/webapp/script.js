@@ -22,8 +22,23 @@ function addMessage() {
   const responseContainer = document.getElementById('responseContainer');
   responseContainer.innerText = messages;
 }
-function getMessage() {
-  fetch('/response').then(response => response.text()).then((message) => {
-    document.getElementById('responseContainer').innerText = message;
-  });
+
+function getServerString (){
+    fetch('/data').then(response => response.json()).then((res) => {
+    
+    const responseElement = document.getElementById('responseContainer');
+    responseElement.innerHTML = '';
+    responseElement.appendChild(
+        createListElement('Info: ' + res[0]));
+    responseElement.appendChild(
+        createListElement('Action: ' + res[1]));
+    responseElement.appendChild(
+        createListElement('Work: ' + res[2]));
+});
+}
+
+function createListElement(text) {
+  const liElement = document.createElement('li');
+  liElement.innerText = text;
+  return liElement;
 }
