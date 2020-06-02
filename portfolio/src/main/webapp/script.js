@@ -22,3 +22,8 @@ function addMessage() {
   const responseContainer = document.getElementById('responseContainer');
   responseContainer.innerText = messages;
 }
+function getMessage() {
+  fetch('/response').then(response => response.text()).then((message) => {
+    document.getElementById('responseContainer').innerText = message;
+  });
+}
