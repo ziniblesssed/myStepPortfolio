@@ -33,7 +33,7 @@ function getServerString (){
     responseElement.appendChild(
         createListElement('Action: ' + res[1]));
     responseElement.appendChild(
-        createListElement('Work: ' + res[0]));
+        createListElement('Work: ' + res[2]));
 });
 }
 
