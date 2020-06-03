@@ -29,11 +29,13 @@ function getServerString (){
     const responseElement = document.getElementById('responseContainer');
     responseElement.innerHTML = '';
     responseElement.appendChild(
-        createListElement('Info: ' + res[0]));
+        createListElement('First name: ' + res[0]));
     responseElement.appendChild(
-        createListElement('Action: ' + res[1]));
+        createListElement('Last name: ' + res[1]));
     responseElement.appendChild(
-        createListElement('Work: ' + res[2]));
+        createListElement('Country: ' + res[2]));
+    responseElement.appendChild(
+        createListElement('Message: ' + res[3]));
 });
 }
 

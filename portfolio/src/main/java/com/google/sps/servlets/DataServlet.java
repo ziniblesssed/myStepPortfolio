@@ -28,21 +28,26 @@ import com.google.gson.Gson;
 @WebServlet("/data")
 public class DataServlet extends HttpServlet {
 
-    private ArrayList<String> messages;
-    @Override
-    public void init(){
-        messages = new ArrayList<String>();
-        messages.add("Adedeji is a computer science student");
-        messages.add("I am testing if this will output correctly");
-        messages.add("I am a google intern");
-    }
+  private ArrayList<String> messages = new ArrayList<String>();
   @Override
-  public void doGet(HttpServletRequest request, HttpServletResponse response) throws IOException {
+  public void doGet(HttpServletRequest request, HttpServletResponse response) throws IOException { 
     Gson gson = new Gson();
     String json = gson.toJson(messages);
     response.setContentType("application/json;");
     response.getWriter().println(json);
   }
+
+  @Override
+  public void doPost(HttpServletRequest request, HttpServletResponse response) throws IOException {
+
+    messages.add(request.getParameter("firstname"));
+    messages.add(request.getParameter("lastname"));
+    messages.add(request.getParameter("country"));
+    messages.add(request.getParameter("subject"));
+    
+
+    response.sendRedirect("/contact.html");
+}
 }
 
 
