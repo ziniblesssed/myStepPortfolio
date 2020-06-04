@@ -47,12 +47,12 @@ public class DataServlet extends HttpServlet {
 
     List<Response> messages = new ArrayList<>();
     for (Entity message : results.asIterable()) {
-        String firstname = (String) message.getProperty("firstname");
-        String lastname = (String) message.getProperty("lastname");
+        String firstName = (String) message.getProperty("firstName");
+        String lastName = (String) message.getProperty("lastName");
         String country = (String) message.getProperty("country");
         String subject = (String) message.getProperty("subject");
 
-        Response res= new Response(firstname, lastname, country, subject);
+        Response res= new Response(firstName, lastName, country, subject);
         messages.add(res);
     }
          
@@ -65,14 +65,14 @@ public class DataServlet extends HttpServlet {
   @Override
   public void doPost(HttpServletRequest request, HttpServletResponse response) throws IOException {
 
-    String firstname = request.getParameter("firstname");
-    String lastname =request.getParameter("lastname");
+    String firstName = request.getParameter("firstName");
+    String lastName =request.getParameter("lastName");
     String country = request.getParameter("country");
     String subject = request.getParameter("subject");
 
     Entity message = new Entity("Response");
-    message.setProperty("firstname", firstname);
-    message.setProperty("lastname", lastname);
+    message.setProperty("firstName", firstName);
+    message.setProperty("lastName", lastName);
     message.setProperty("country", country);
     message.setProperty("subject",subject);
 
