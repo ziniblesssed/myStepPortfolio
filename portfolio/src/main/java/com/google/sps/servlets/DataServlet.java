@@ -14,6 +14,13 @@
 
 package com.google.sps.servlets;
 
+import com.google.sps.servlets.Response;
+import com.google.appengine.api.datastore.DatastoreService;
+import com.google.appengine.api.datastore.DatastoreServiceFactory;
+import com.google.appengine.api.datastore.Entity;
+import com.google.appengine.api.datastore.PreparedQuery;
+import com.google.appengine.api.datastore.Query;
+import com.google.appengine.api.datastore.Query.SortDirection;
 import java.io.IOException;
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
@@ -21,16 +28,34 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import java.util.ArrayList; // import the ArrayList class
 import com.google.gson.Gson;
+import java.util.List;
 
 
 
 /** Servlet that returns some example content. TODO: modify this file to handle comments data */
 @WebServlet("/data")
 public class DataServlet extends HttpServlet {
-
+  DatastoreService datastore = DatastoreServiceFactory.getDatastoreService();
   private ArrayList<String> messages = new ArrayList<String>();
+
   @Override
   public void doGet(HttpServletRequest request, HttpServletResponse response) throws IOException { 
+
+    DatastoreService datastore = DatastoreServiceFactory.getDatastoreService();
+    //Response is a java file that contains which an object message
+    PreparedQuery results = datastore.prepare(new Query("Response"));
+
+    List<Response> messages = new ArrayList<>();
+    for (Entity message : results.asIterable()) {
+        String firstName = (String) message.getProperty("firstName");
+        String lastName = (String) message.getProperty("lastName");
+        String country = (String) message.getProperty("country");
+        String subject = (String) message.getProperty("subject");
+
+        Response res= new Response(firstName, lastName, country, subject);
+        messages.add(res);
+    }
+         
     Gson gson = new Gson();
     String json = gson.toJson(messages);
     response.setContentType("application/json;");
@@ -40,11 +65,21 @@ public class DataServlet extends HttpServlet {
   @Override
   public void doPost(HttpServletRequest request, HttpServletResponse response) throws IOException {
 
-    messages.add(request.getParameter("firstname"));
-    messages.add(request.getParameter("lastname"));
-    messages.add(request.getParameter("country"));
-    messages.add(request.getParameter("subject"));
+    String firstName = request.getParameter("firstName");
+    String lastName =request.getParameter("lastName");
+    String country = request.getParameter("country");
+    String subject = request.getParameter("subject");
+
+    Entity message = new Entity("Response");
+    message.setProperty("firstName", firstName);
+    message.setProperty("lastName", lastName);
+    message.setProperty("country", country);
+    message.setProperty("subject",subject);
+
+    DatastoreService datastore = DatastoreServiceFactory.getDatastoreService();
+    datastore.put(message);
     
+
 
     response.sendRedirect("/contact.html");
 }
