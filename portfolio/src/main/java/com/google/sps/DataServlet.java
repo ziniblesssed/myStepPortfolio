@@ -36,7 +36,8 @@ import com.google.appengine.api.datastore.FetchOptions;
 /** Servlet that handle comments data and return user selected comment */
 @WebServlet("/data")
 public class DataServlet extends HttpServlet {
-  DatastoreService datastore;
+    
+  private DatastoreService datastore = DatastoreServiceFactory.getDatastoreService();   
   private ArrayList<String> messages = new ArrayList<String>();
   private int max;
 
@@ -45,20 +46,21 @@ public class DataServlet extends HttpServlet {
    
     Query query = new Query("Response").addSort("timeStamp", SortDirection.DESCENDING);
 
-    datastore = DatastoreServiceFactory.getDatastoreService();   
+  
 
     int messageChoice = getChoice(request);
 
     List<Entity> results = datastore.prepare(query).asList(FetchOptions.Builder.withLimit(messageChoice));
     List<Response> messages = new ArrayList<>();
     for (Entity message : results) {
+        long id = message.getKey().getId();
         String firstName = (String) message.getProperty("firstName");
         String lastName = (String) message.getProperty("lastName");
         String country = (String) message.getProperty("country");
         String subject = (String) message.getProperty("subject");
+        long timeStamp = (long) message.getProperty("timeStamp");
 
-
-        Response res= new Response(firstName, lastName, country, subject);
+        Response res= new Response(id,firstName, lastName, country, subject,timeStamp);
         messages.add(res);
     }         
     Gson gson = new Gson();
