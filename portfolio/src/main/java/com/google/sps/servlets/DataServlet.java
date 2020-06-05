@@ -26,36 +26,41 @@ import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
-import java.util.ArrayList; // import the ArrayList class
+import java.util.ArrayList; 
 import com.google.gson.Gson;
 import java.util.List;
+import com.google.appengine.api.datastore.FetchOptions;
 
 
 
-/** Servlet that returns some example content. TODO: modify this file to handle comments data */
+/** Servlet that handle comments data and return user selected comment */
 @WebServlet("/data")
 public class DataServlet extends HttpServlet {
-  DatastoreService datastore = DatastoreServiceFactory.getDatastoreService();
+  DatastoreService datastore;
   private ArrayList<String> messages = new ArrayList<String>();
+  private int max;
 
   @Override
   public void doGet(HttpServletRequest request, HttpServletResponse response) throws IOException { 
+   
+    Query query = new Query("Response").addSort("timeStamp", SortDirection.DESCENDING);
 
-    DatastoreService datastore = DatastoreServiceFactory.getDatastoreService();
-    //Response is a java file that contains which an object message
-    PreparedQuery results = datastore.prepare(new Query("Response"));
+    datastore = DatastoreServiceFactory.getDatastoreService();   
 
+    int messageChoice = getChoice(request);
+
+    List<Entity> results = datastore.prepare(query).asList(FetchOptions.Builder.withLimit(messageChoice));
     List<Response> messages = new ArrayList<>();
-    for (Entity message : results.asIterable()) {
+    for (Entity message : results) {
         String firstName = (String) message.getProperty("firstName");
         String lastName = (String) message.getProperty("lastName");
         String country = (String) message.getProperty("country");
         String subject = (String) message.getProperty("subject");
 
+
         Response res= new Response(firstName, lastName, country, subject);
         messages.add(res);
-    }
-         
+    }         
     Gson gson = new Gson();
     String json = gson.toJson(messages);
     response.setContentType("application/json;");
@@ -69,20 +74,36 @@ public class DataServlet extends HttpServlet {
     String lastName =request.getParameter("lastName");
     String country = request.getParameter("country");
     String subject = request.getParameter("subject");
+    long timeStamp = System.currentTimeMillis();
 
     Entity message = new Entity("Response");
     message.setProperty("firstName", firstName);
     message.setProperty("lastName", lastName);
     message.setProperty("country", country);
     message.setProperty("subject",subject);
+    message.setProperty("timeStamp", timeStamp);
 
-    DatastoreService datastore = DatastoreServiceFactory.getDatastoreService();
     datastore.put(message);
-    
-
 
     response.sendRedirect("/contact.html");
 }
+
+/** Returns the choice entered by the user or -1 if the choice was invalid. */
+  private int getChoice(HttpServletRequest request) {
+    // Get the input from the form.
+    String choiceString = request.getParameter("messageChoice");
+    // Convert the input to an int.
+    int choice;
+    try {
+      choice = Integer.parseInt(choiceString);
+    } catch (NumberFormatException e) {
+      System.err.println("Could not convert to int: " + choiceString);
+      return 2;
+    }
+    
+    return choice;
+  }
+
 }
 
 

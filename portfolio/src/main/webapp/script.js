@@ -1,3 +1,4 @@
+
 // Copyright 2019 Google LLC
 //
 // Licensed under the Apache License, Version 2.0 (the "License");
@@ -23,19 +24,40 @@ function addMessage() {
   responseContainer.innerText = messages;
 }
 
+//Function to load when contact page is loaded
 function getServerString (){
     fetch('/data').then(response => response.json()).then((res) => {
-    
     const responseElement = document.getElementById('responseContainer');
     responseElement.innerHTML = '';
-    responseElement.appendChild(
-        createListElement('First name: ' + res[0]));
-    responseElement.appendChild(
-        createListElement('Last name: ' + res[1]));
-    responseElement.appendChild(
-        createListElement('Country: ' + res[2]));
-    responseElement.appendChild(
-        createListElement('Message: ' + res[3]));
+    for(let i=0; (i < res.length); i++){
+        responseElement.appendChild(
+            createListElement('First name: ' + res[i].firstName));
+        responseElement.appendChild(
+            createListElement('Last name: ' + res[i].lastName));
+        responseElement.appendChild(
+            createListElement('Country: ' + res[i].country));
+        responseElement.appendChild(
+            createListElement('Message: ' + res[i].subject));
+    }
+});
+}
+
+//Function to load when max comment is changed
+function loadComments() {
+    const max = document.getElementById("messageChoice").value;
+     fetch('/data?messageChoice='+max).then(response => response.json()).then((res) => {
+         const responseElement = document.getElementById('responseContainer');
+    responseElement.innerHTML = '';
+    for(let i=0; (i <max) && (i < res.length); i++){
+        responseElement.appendChild(
+            createListElement('First name: ' + res[i].firstName));
+        responseElement.appendChild(
+            createListElement('Last name: ' + res[i].lastName));
+        responseElement.appendChild(
+            createListElement('Country: ' + res[i].country));
+        responseElement.appendChild(
+            createListElement('Message: ' + res[i].subject));
+    }
 });
 }
 
