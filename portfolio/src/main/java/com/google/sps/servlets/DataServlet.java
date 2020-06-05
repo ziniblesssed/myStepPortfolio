@@ -26,14 +26,14 @@ import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
-import java.util.ArrayList; // import the ArrayList class
+import java.util.ArrayList; 
 import com.google.gson.Gson;
 import java.util.List;
 import com.google.appengine.api.datastore.FetchOptions;
 
 
 
-/** Servlet that returns some example content. TODO: modify this file to handle comments data */
+/** Servlet that handle comments data and return user selected comment */
 @WebServlet("/data")
 public class DataServlet extends HttpServlet {
   DatastoreService datastore;
@@ -48,9 +48,6 @@ public class DataServlet extends HttpServlet {
     datastore = DatastoreServiceFactory.getDatastoreService();   
 
     int messageChoice = getChoice(request);
-    if (messageChoice == -1) {
-        messageChoice=3;
-    }
 
     List<Entity> results = datastore.prepare(query).asList(FetchOptions.Builder.withLimit(messageChoice));
     List<Response> messages = new ArrayList<>();
@@ -101,15 +98,9 @@ public class DataServlet extends HttpServlet {
       choice = Integer.parseInt(choiceString);
     } catch (NumberFormatException e) {
       System.err.println("Could not convert to int: " + choiceString);
-      return -1;
+      return 2;
     }
-
-    // Check that the input is between 1 and 3.
-    if (choice < 1 || choice > 3) {
-      System.err.println("user choice out of range: " + choiceString);
-      return -1;
-    }
-
+    
     return choice;
   }
 
