@@ -66,20 +66,19 @@ function createListElement(text) {
   liElement.innerText = text;
   return liElement;
 }
-function createTaskElement() {
-  const taskEleComment = document.createElement('li');
-  taskElcommentt.className = 'Response';
+function createCommentElement() {
+  const commentElement = document.createElement('li');
+  commentElement.className = 'Response';
 
-tnemmoc  const titleElement = document.createElement('span');
+  const titleElement = document.createElement('span');
   titleElement.innerText = Response.title;
 
  
-  taskElement.appendChild(titleElement);
+  commentElement.appendChild(titleElement);
   commentElement.appendChild(deleteButtonElement);
-  commentrn taskElement;
+  return commentElement;
 }
-tnemmoc
-/** Tells the server to delete the task. */
+
 async function deleteComment() {
   await fetch('/delete-data', {method: 'POST'});
   location.reload();
