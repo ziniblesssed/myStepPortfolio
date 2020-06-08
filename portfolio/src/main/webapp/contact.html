@@ -12,11 +12,12 @@
     <link rel="stylesheet" href="commonStyle.css">
     <link rel="stylesheet" href="contact.css">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+    <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyBbiWKIpQgPebA6vZZaUMlpnZh95HSGopM"></script>
     <script src="script.js"></script>
 </head>
 <!--The body contains a nav bar,a container divided into two columns,
      and a footer -->
-<body onload="getServerString()">
+<body onload="getServerString(); createMap();">
     <!-- Nav Bar -->
     <ul class="nav">
         <li><a href="index.html">Home</a></li>
@@ -34,15 +35,7 @@
             and a badge to my linkedIn profile embed in buttom corner -->
         <div class="row">
             <div class="column">
-            <img src="../images/map.png" style="width:100%">
-                <br></br>
-            <!-- Embedded LinkedIn badge -->    
-            <div class="LI-profile-badge"  data-version="v1" data-size="large" 
-            data-locale="en_US" data-type="vertical" data-theme="dark" 
-            data-vanity="adedeji-adebisi-912690194"><a class="LI-simple-link" 
-            href='https://www.linkedin.com/in/adedeji-adebisi-912690194?trk=profile-badge'>
-            Adedeji Adebisi</a></div>
-            <script type="text/javascript" src="https://platform.linkedin.com/badges/js/profile.js" async defer></script>
+                <div id="map"></div>            
             </div>
             <!--Second column contains a form for users and textarea to leave a message -->
             <div class="column">

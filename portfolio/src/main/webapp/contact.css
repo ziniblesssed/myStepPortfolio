@@ -12,7 +12,11 @@ h3 {
     text-align: center;
     color: rgb(57, 159, 228);
 }
-
+#map {
+  border: thin solid black;
+  height:100%;
+  width: 100%;
+}
 input[type=text], select, textarea {
     width: 100%;
     padding: 12px;
@@ -44,6 +48,7 @@ input[type=submit]:hover {
     background-color: #f2f2f2;
     padding: 10px;
 }
+
 .column {
     float: left;
     width: 50%;
