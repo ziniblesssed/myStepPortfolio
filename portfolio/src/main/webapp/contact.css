@@ -13,9 +13,21 @@ h3 {
     color: rgb(57, 159, 228);
 }
 #map {
-  border: thin solid black;
-  height:100%;
-  width: 100%;
+    border: thin solid black;
+    height:100%;
+    width: 100%;
+}
+.floating-panel {
+    position: absolute;
+    left: 32%;
+    z-index: 5;
+    background-color: #fff;
+    padding: 5px;
+    border: 1px solid #999;
+    text-align: center;
+    font-family: 'Roboto','sans-serif';
+    line-height: 30px;
+    padding-left: 10px;
 }
 input[type=text], select, textarea {
     width: 100%;

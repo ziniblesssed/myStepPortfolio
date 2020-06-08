@@ -16,6 +16,7 @@
 /**
  * Adds a random greeting to the page.
  */
+var map;
 function addMessage() {
   const messages = "Your respose has been received.";
 
@@ -83,8 +84,29 @@ async function deleteComment() {
   await fetch('/delete-data', {method: 'POST'});
   location.reload();
 }
-function createMap() {
-  const map = new google.maps.Map(
-      document.getElementById('map'),
-      {center: {lat: 37.422, lng: -122.084}, zoom: 16});
+function initMap() {
+    map = new google.maps.Map(document.getElementById('map'), {
+    center: {lat: 33.500550, lng: -90.327950},
+    zoom: 18,
+    mapTypeId: 'satellite',
+    heading: 90,
+    tilt: 45
+    });
+    const myUni = new google.maps.Marker({
+    position: {lat: 33.5151196, lng: -90.3386959},
+    map: map,
+    title: 'Mississippi Valley State university'
+  });
+}
+
+function rotate90() {
+    var heading = map.getHeading() || 0;
+    map.setHeading(heading + 90);
+}
+
+function autoRotate() {
+// Determine if we're showing aerial imagery.
+    if (map.getTilt() !== 0) {
+         window.setInterval(rotate90, 3000);
+    }
 }
