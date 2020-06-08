@@ -17,15 +17,19 @@ package com.google.sps.servlets;
 /** Sets instance Response of a message object */
 public final class Response {
 
+  private final long id;
   private final String firstName;
   private final String lastName;
   private final String country;
   private final String subject;
+  private final long timeStamp;
 
-  public Response(String firstName, String lastName, String country,String subject) {
+  public Response(long id, String firstName, String lastName, String country,String subject,long timeStamp) {
+    this.id=id;
     this.firstName= firstName;
     this.lastName= lastName;
     this.country = country;
     this.subject = subject;
+    this.timeStamp = timeStamp;
   }
 }

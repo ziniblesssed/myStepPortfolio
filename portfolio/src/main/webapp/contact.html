@@ -9,12 +9,15 @@
     <title>Adedeji Portfolio</title>
     <!--Reference to Bootstrap Stylesheet -->
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.0/css/bootstrap.min.css" integrity="sha384-9aIt2nRpC12Uk9gS9baDl411NQApFmC26EwAOH8WgZl5MYYxFfc+NcPb1dKGj7Sk" crossorigin="anonymous">
+    <link rel="stylesheet" href="commonStyle.css">
     <link rel="stylesheet" href="contact.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+    <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyBbiWKIpQgPebA6vZZaUMlpnZh95HSGopM"></script>
     <script src="script.js"></script>
 </head>
 <!--The body contains a nav bar,a container divided into two columns,
      and a footer -->
-<body onload="getServerString()">
+<body onload="getServerString(); createMap();">
     <!-- Nav Bar -->
     <ul class="nav">
         <li><a href="index.html">Home</a></li>
@@ -32,23 +35,15 @@
             and a badge to my linkedIn profile embed in buttom corner -->
         <div class="row">
             <div class="column">
-            <img src="../images/map.png" style="width:100%">
-                <br></br>
-            <!-- Embedded LinkedIn badge -->    
-            <div class="LI-profile-badge"  data-version="v1" data-size="large" 
-            data-locale="en_US" data-type="vertical" data-theme="dark" 
-            data-vanity="adedeji-adebisi-912690194"><a class="LI-simple-link" 
-            href='https://www.linkedin.com/in/adedeji-adebisi-912690194?trk=profile-badge'>
-            Adedeji Adebisi</a></div>
-            <script type="text/javascript" src="https://platform.linkedin.com/badges/js/profile.js" async defer></script>
+                <div id="map"></div>            
             </div>
             <!--Second column contains a form for users and textarea to leave a message -->
             <div class="column">
                 <form action="/data">
                     <label for="fname">First Name</label>
-                    <input type="text" id="fname" name="firstName" placeholder="Your name..">
+                    <input type="text" id="fname" name="firstName" placeholder="Your name.." required>
                     <label for="lname">Last Name</label>
-                    <input type="text" id="lname" name="lastName" placeholder="Your last name..">
+                    <input type="text" id="lname" name="lastName" placeholder="Your last name.." required>
                     <label for="country">Country</label>
                     <select id="country" name="country">
                     <option value="Nigeria">Nigeria</option>
@@ -56,21 +51,19 @@
                     <option value="USA">USA</option>
                     </select>
                     <label for="subject">Subject</label>
-                    <textarea id="subject" name="subject" placeholder="Write something.." style="height:170px"></textarea>
-                    <label for="max" >Maximum Number </label>
-                    <input onchange="loadComments()" id="messageChoice" type="number" name="messageChoice" min="1" max="3" value="1">
+                    <textarea id="subject" name="subject" placeholder="Write something.." style="height:170px" required></textarea>
                     <button   type="submit" formmethod="POST" class="btn btn-dark mb-3 ">Submit
                     </button>        
                 </form>
-                <div  id="responseContainer"> </div>
             </div>
         </div>
     </div>
    
-        <div class="footer">
-            <a href="https://twitter.com/zini_blessed12"  target="_blank" class="fa fa-twitter"></a>
-            <a href="https://www.linkedin.com/in/adedeji-adebisi-912690194/"target="_blank" class="fa fa-linkedin"></a>
-            <a href="https://www.instagram.com/ziniblessed/" target="_blank" class="fa fa-instagram"></a>
-        </div>
+       <div class="footer">
+        <a href="https://github.com/ziniblesssed"  target="_blank" class="fa fa-github"></a>    
+        <a href="https://twitter.com/zini_blessed12"  target="_blank" class="fa fa-twitter"></a>
+        <a href="https://www.linkedin.com/in/adedeji-adebisi-912690194/"target="_blank" class="fa fa-linkedin"></a>
+        <a href="https://www.instagram.com/ziniblessed/" target="_blank" class="fa fa-instagram"></a>
+    </div>
 </body>
 </html>

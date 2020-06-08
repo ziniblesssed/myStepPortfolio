@@ -66,3 +66,25 @@ function createListElement(text) {
   liElement.innerText = text;
   return liElement;
 }
+function createCommentElement() {
+  const commentElement = document.createElement('li');
+  commentElement.className = 'Response';
+
+  const titleElement = document.createElement('span');
+  titleElement.innerText = Response.title;
+
+ 
+  commentElement.appendChild(titleElement);
+  commentElement.appendChild(deleteButtonElement);
+  return commentElement;
+}
+
+async function deleteComment() {
+  await fetch('/delete-data', {method: 'POST'});
+  location.reload();
+}
+function createMap() {
+  const map = new google.maps.Map(
+      document.getElementById('map'),
+      {center: {lat: 37.422, lng: -122.084}, zoom: 16});
+}

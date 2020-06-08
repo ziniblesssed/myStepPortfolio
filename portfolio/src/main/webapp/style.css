@@ -7,33 +7,7 @@ h1 {
     font-weight: bolder;
 }
 .nav {
-    overflow: hidden;
     background-color: black; 
-    list-style-type: none;
-    position: sticky;
-    text-align: center;
-    margin: 0;
-    padding: 0;
-    display: flow-root;
-}
-.nav li {
-    display: inline-block;
-    padding: 10px;
-}
-.nav a {
-    float: center;
-    color: #f2f2f2;
-    text-align: center;
-    padding: 14px 16px;
-    text-decoration: none;
-}
-.nav a:hover {
-    background-color: #ddd;
-    color: black;
-}
-.nav a.active {
-    background-color: #666;
-    color: white;
 }
 body {
     background-image: "images/bg.jpg";
@@ -49,6 +23,7 @@ body {
     background: #fff  662px 0px repeat-y;
     background-image: url(../images/bg.jpg);
 }
+
 .container {
     padding: 80px 90px;
     background-color: gainsboro;
@@ -92,32 +67,4 @@ body {
 }
 .rows{
     padding-top: inherit;
-}
-.footer {
-    padding: 20px;
-    text-align: center;
-    background: #ddd;
-}
-.fa {
-    padding: 0px;
-    font-size: 30px;
-    width: 50px;
-    text-align: center;
-    text-decoration: none;
-    margin: 5px 2px;
-}
-.fa:hover {
-    opacity: 0.7;
-}
-.fa-twitter {
-    background: #55ACEE;
-    color: white;
-}
-.fa-linkedin {
-    background: #007bb5;
-    color: white;
-}
-.fa-instagram {
-    background: #125688;
-    color: white;
 }

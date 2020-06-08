@@ -5,26 +5,17 @@ body {
     box-sizing: border-box;
 }
 .nav {
-    overflow: hidden;
-    background-color: black; 
-    list-style-type: none;
-    position: sticky;
-    text-align: center;
-    margin: 0;
-    padding: 0;
-    display: flow-root;
+    background-color: black;    
 }
-.nav li {
-    display: inline-block;
-    padding: 10px;
-}
-.nav a {
-    float: center;
-    color: #f2f2f2;
+h3 {
+    padding-top: 30px;
     text-align: center;
-    padding: 14px 16px;
-    text-decoration: none;
-
+    color: rgb(57, 159, 228);
+}
+#map {
+  border: thin solid black;
+  height:100%;
+  width: 100%;
 }
 input[type=text], select, textarea {
     width: 100%;
@@ -52,26 +43,12 @@ input[type=submit]:hover {
     text-decoration: none;
     margin: 5px 2px;
 }
-.fa:hover {
-    opacity: 0.7;
-}
-.fa-twitter {
-    background: #55ACEE;
-    color: white;
-}
-.fa-linkedin {
-    background: #007bb5;
-    color: white;
-}
-.fa-instagram {
-    background: #125688;
-    color: white;
-}
 .container {
     border-radius: 5px;
     background-color: #f2f2f2;
     padding: 10px;
 }
+
 .column {
     float: left;
     width: 50%;
@@ -92,14 +69,4 @@ to each other */
     width: 100%;
     margin-top: 0;
   }
-}
-.footer {
-    padding: 20px;
-    text-align: center;
-    background: #ddd;
-}
-h3 {
-    padding-top: 30px;
-    text-align: center;
-    color: rgb(57, 159, 228);
 }
