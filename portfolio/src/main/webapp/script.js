@@ -16,7 +16,8 @@
 /**
  * Adds a random greeting to the page.
  */
-var map;
+var map, popup, Popup;
+
 function addMessage() {
   const messages = "Your respose has been received.";
 
@@ -63,40 +64,40 @@ function loadComments() {
 }
 
 function createListElement(text) {
-  const liElement = document.createElement('li');
-  liElement.innerText = text;
-  return liElement;
+    const liElement = document.createElement('li');
+    liElement.innerText = text;
+    return liElement;
 }
+
 function createCommentElement() {
-  const commentElement = document.createElement('li');
-  commentElement.className = 'Response';
+    const commentElement = document.createElement('li');
+    commentElement.className = 'Response';
 
-  const titleElement = document.createElement('span');
-  titleElement.innerText = Response.title;
+    const titleElement = document.createElement('span');
+    titleElement.innerText = Response.title;
 
- 
-  commentElement.appendChild(titleElement);
-  commentElement.appendChild(deleteButtonElement);
-  return commentElement;
+    
+    commentElement.appendChild(titleElement);
+    commentElement.appendChild(deleteButtonElement);
+    return commentElement;
 }
 
 async function deleteComment() {
-  await fetch('/delete-data', {method: 'POST'});
-  location.reload();
+    await fetch('/delete-data', {method: 'POST'});
+    location.reload();
 }
+//Function to load for maps
 function initMap() {
     map = new google.maps.Map(document.getElementById('map'), {
     center: {lat: 33.500550, lng: -90.327950},
-    zoom: 18,
-    mapTypeId: 'satellite',
+    zoom: 13,
+    mapTypeControl: false,
     heading: 90,
     tilt: 45
     });
-    const myUni = new google.maps.Marker({
-    position: {lat: 33.5151196, lng: -90.3386959},
-    map: map,
-    title: 'Mississippi Valley State university'
-  });
+
+    
+    new AutocompleteDirectionsHandler(map);
 }
 
 function rotate90() {
@@ -110,3 +111,156 @@ function autoRotate() {
          window.setInterval(rotate90, 3000);
     }
 }
+
+
+function createPopupClass() {
+  /**
+   * A customized popup on the map.
+   * @param {!google.maps.LatLng} position
+   * @param {!Element} content The bubble div.
+   * @constructor
+   * @extends {google.maps.OverlayView}
+   */
+  function Popup(position, content) {
+    this.position = position;
+
+    content.classList.add('popup-bubble');
+
+    // This zero-height div is positioned at the bottom of the bubble.
+    var bubbleAnchor = document.createElement('div');
+    bubbleAnchor.classList.add('popup-bubble-anchor');
+    bubbleAnchor.appendChild(content);
+
+    // This zero-height div is positioned at the bottom of the tip.
+    this.containerDiv = document.createElement('div');
+    this.containerDiv.classList.add('popup-container');
+    this.containerDiv.appendChild(bubbleAnchor);
+
+    // Optionally stop clicks, etc., from bubbling up to the map.
+    google.maps.OverlayView.preventMapHitsAndGesturesFrom(this.containerDiv);
+  }
+  // ES5 magic to extend google.maps.OverlayView.
+  Popup.prototype = Object.create(google.maps.OverlayView.prototype);
+
+  /** Called when the popup is added to the map. */
+  Popup.prototype.onAdd = function() {
+        this.getPanes().floatPane.appendChild(this.containerDiv);
+  };
+
+  /** Called when the popup is removed from the map. */
+  Popup.prototype.onRemove = function() {
+        if (this.containerDiv.parentElement) {
+            this.containerDiv.parentElement.removeChild(this.containerDiv);
+        }
+  };
+
+  /** Called each frame when the popup needs to draw itself. */
+  Popup.prototype.draw = function() {
+        var divPosition = this.getProjection().fromLatLngToDivPixel(this.position);
+
+    // Hide the popup when it is far out of view.
+    var display =
+        Math.abs(divPosition.x) < 4000 && Math.abs(divPosition.y) < 4000 ?
+        'block' :
+        'none';
+
+    if (display === 'block') {
+        this.containerDiv.style.left = divPosition.x + 'px';
+        this.containerDiv.style.top = divPosition.y + 'px';
+    }
+    if (this.containerDiv.style.display !== display) {
+        this.containerDiv.style.display = display;
+    }
+  };
+
+  return Popup;
+}
+function AutocompleteDirectionsHandler(map) {
+    this.map = map;
+    this.originPlaceId = null;
+    this.destinationPlaceId = null;
+    this.travelMode = 'WALKING';
+    this.directionsService = new google.maps.DirectionsService();
+    this.directionsRenderer = new google.maps.DirectionsRenderer();
+    this.directionsRenderer.setMap(map);
+
+    var originInput = document.getElementById('origin-input');
+    var destinationInput = document.getElementById('destination-input');
+    var modeSelector = document.getElementById('mode-selector');
+
+    var originAutocomplete = new google.maps.places.Autocomplete(originInput);
+    // Specify just the place data fields that you need.
+    originAutocomplete.setFields(['place_id']);
+
+    var destinationAutocomplete =
+        new google.maps.places.Autocomplete(destinationInput);
+    // Specify just the place data fields that you need.
+    destinationAutocomplete.setFields(['place_id']);
+
+    this.setupClickListener('changemode-walking', 'WALKING');
+    this.setupClickListener('changemode-transit', 'TRANSIT');
+    this.setupClickListener('changemode-driving', 'DRIVING');
+
+    this.setupPlaceChangedListener(originAutocomplete, 'ORIG');
+    this.setupPlaceChangedListener(destinationAutocomplete, 'DEST');
+
+    this.map.controls[google.maps.ControlPosition.TOP_LEFT].push(originInput);
+    this.map.controls[google.maps.ControlPosition.TOP_LEFT].push(
+        destinationInput);
+    this.map.controls[google.maps.ControlPosition.TOP_LEFT].push(modeSelector);
+}
+
+// Sets a listener on a radio button to change the filter type on Places
+// Autocomplete.
+AutocompleteDirectionsHandler.prototype.setupClickListener = function(
+    id, mode) {
+    var radioButton = document.getElementById(id);
+    var me = this;
+
+    radioButton.addEventListener('click', function() {
+        me.travelMode = mode;
+        me.route();
+    });
+};
+
+AutocompleteDirectionsHandler.prototype.setupPlaceChangedListener = function(
+    autocomplete, mode) {
+    var me = this;
+    autocomplete.bindTo('bounds', this.map);
+
+    autocomplete.addListener('place_changed', function() {
+        var place = autocomplete.getPlace();
+
+        if (!place.place_id) {
+        window.alert('Please select an option from the dropdown list.');
+        return;
+        }
+        if (mode === 'ORIG') {
+        me.originPlaceId = place.place_id;
+        } else {
+        me.destinationPlaceId = place.place_id;
+        }
+        me.route();
+    });
+};
+
+AutocompleteDirectionsHandler.prototype.route = function() {
+  if (!this.originPlaceId || !this.destinationPlaceId) {
+    return;
+  }
+    var me = this;
+
+    this.directionsService.route(
+        {
+            origin: {'placeId': this.originPlaceId},
+            destination: {'placeId': this.destinationPlaceId},
+            travelMode: this.travelMode
+        },
+        function(response, status) {
+            if (status === 'OK') {
+            me.directionsRenderer.setDirections(response);
+            } else {
+            window.alert('Directions request failed due to ' + status);
+            }
+        });
+};
