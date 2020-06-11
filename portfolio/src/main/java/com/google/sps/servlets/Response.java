@@ -23,13 +23,16 @@ public final class Response {
   private final String country;
   private final String subject;
   private final long timeStamp;
+  private final float score;
 
-  public Response(long id, String firstName, String lastName, String country,String subject,long timeStamp) {
+  public Response(long id, String firstName, String lastName, String country,String subject,long timeStamp, float score) {
     this.id=id;
     this.firstName= firstName;
     this.lastName= lastName;
     this.country = country;
     this.subject = subject;
     this.timeStamp = timeStamp;
+    this.score = score;
   }
 }
+
