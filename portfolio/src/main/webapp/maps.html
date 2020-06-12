@@ -1,34 +1,28 @@
 <!DOCTYPE html>
 <html>
 <head>
-    <meta name="viewport" content="width=device-width, initial-scale=1">
-    <title>Adedeji Portfolio</title>
-    <!--Reference to Bootstrap Stylesheet -->
+    <meta name="viewport" content="initial-scale=1.0, user-scalable=no">
+    <meta charset="utf-8">
+    <title>Place Search Pagination</title>
+     <!--Reference to bootstrap css stylesheet -->
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.0/css/bootstrap.min.css" integrity="sha384-9aIt2nRpC12Uk9gS9baDl411NQApFmC26EwAOH8WgZl5MYYxFfc+NcPb1dKGj7Sk" crossorigin="anonymous">
     <link rel="stylesheet" href="commonStyle.css">
-    <link rel="stylesheet" href="maps.css">
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
-    <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyBbiWKIpQgPebA6vZZaUMlpnZh95HSGopM"></script>
+    <link rel="stylesheet" href="maps.css">    
+    <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyBbiWKIpQgPebA6vZZaUMlpnZh95HSGopM&libraries=places&callback=initMap" async defer></script>
     <script src="script.js"></script>
 </head>
-<body onload="initMap()">
-    <ul class="nav sticky-top">
-        <li><a href="index.html">Home</a></li>
-        <li><a href="aboutMe.html">About Me</a></li>
-        <li><a href="../Files/resume.pdf" target="_blank">Resume</a></li>  
-        <li><a href="contact.html">Contact</a></li>
-        <li><a href="maps.html">Maps</a></li>
-    </ul> 
-        <!-- Container to hold main content of page -->
-    <div class="container">
-        <div style="text-align:center">
-         <h1> This page will get your zip code or address 
-            and return you the map, long and lat. </h1>
-        </div>
-        <div id="map"></div>
-        <div id="content">
-            Mississippi Valley State university
-        </div>
+<body onload="initMap2()">
+    <div id="map"></div>
+    <div id="right-panel">
+      <h2>Results</h2>
+      <ul id="places" style="height: 271px;
+            width: 200px;"></ul>
+      <button id="more">More results</button>
+      <br>
+    <form action="index.html">
+        <input type="submit" value="Go to Home" />
+    </form>
     </div>
 </body>
 </html>
+
