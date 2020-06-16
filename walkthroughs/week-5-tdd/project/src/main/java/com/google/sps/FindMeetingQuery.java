@@ -42,7 +42,7 @@ public final class FindMeetingQuery {
         for (Event event : events){         
             TimeRange when = event.getWhen();
             Set<String> eventAttendees = event.getAttendees();
-            //Check if event Attendee is part of current event
+            //Check if event Attendee is part of current event or if event attendee is optional and has time all day
             if (!(Collections.disjoint(attendees, eventAttendees)) ||(((!(Collections.disjoint(optionalAttendees, eventAttendees))) && (24*60 - when.duration() > meetingTime) && (when.duration() >= meetingTime))) ) { 
                  //Check if start time is before even started so it doesn't overlap
                     if (startTime < when.start()) {
