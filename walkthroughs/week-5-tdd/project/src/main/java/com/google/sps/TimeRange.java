@@ -36,6 +36,8 @@ public final class TimeRange {
     }
   };
 
+  
+
   /**
    * A comparator for sorting ranges by their end time in ascending order.
    */

@@ -18,30 +18,44 @@ import java.util.*;
  
 public final class FindMeetingQuery {
     public Collection<TimeRange> query(Collection<Event> events, MeetingRequest request) {
-        int meetingTime = (int) request.getDuration();
         Collection<String> attendees = request.getAttendees();
-        ArrayList<TimeRange> availableTime = new ArrayList<TimeRange>();
-        int startTime = TimeRange.START_OF_DAY;        
-        Set<TimeRange> notAvailableTime = new HashSet<TimeRange>();
+        Collection<String> optionalAttendees = request.getOptionalAttendees();
+        ArrayList<Event> sortedEvents = new ArrayList<>(events);
+        Collections.sort(sortedEvents, Event.ORDER_BY_START);
+        Collection<TimeRange> availableTimeWith = new ArrayList<TimeRange>();
+      
+ 
+        availableTimeWith=getTimeRange(sortedEvents,attendees,optionalAttendees,request);
+ 
+        return availableTimeWith;
+    }
+
+    
+
+    public Collection<TimeRange> getTimeRange(Collection<Event> events,Collection <String> attendees,Collection <String> optionalAttendees, MeetingRequest request) {
+        int meetingTime = (int) request.getDuration();
+        Collection<TimeRange> availableTime = new ArrayList<TimeRange>();
+        int startTime = TimeRange.START_OF_DAY; 
+        int allDay= 24*60;    
 
         //Loop through events to find conflicting time
         for (Event event : events){         
             TimeRange when = event.getWhen();
             Set<String> eventAttendees = event.getAttendees();
             //Check if event Attendee is part of current event
-            if (!(Collections.disjoint(attendees,event.getAttendees()))){
+            if (!(Collections.disjoint(attendees, eventAttendees)) ||(((!(Collections.disjoint(optionalAttendees, eventAttendees))) && (24*60 - when.duration() > meetingTime) && (when.duration() >= meetingTime))) ) { 
                  //Check if start time is before even started so it doesn't overlap
-                 if (startTime < when.start()) {
-                    TimeRange availTime = TimeRange.fromStartEnd(startTime, when.start(), false);    
-                    //Check if theres enough time for the
-                    // meeting before adding the time to available time
-                    if (availTime.duration() >= meetingTime){
-                        availableTime.add(availTime);
-                    }
-                } 
-                if (startTime < when.end()) {
-                startTime= when.end();
-                }                        
+                    if (startTime < when.start()) {
+                        TimeRange availTime = TimeRange.fromStartEnd(startTime, when.start(), false);    
+                        //Check if theres enough time for the
+                        // meeting before adding the time to available time
+                        if (availTime.duration() >= meetingTime){
+                            availableTime.add(availTime);
+                        }                    
+                    }                   
+                    if (startTime < when.end()) {
+                        startTime= when.end();
+                    }                       
             }
         }
         //Check for last possible time for the meeting if not at the end of the day
@@ -49,8 +63,9 @@ public final class FindMeetingQuery {
             TimeRange availTime = TimeRange.fromStartEnd(startTime, TimeRange.END_OF_DAY, true);
             if(availTime.duration() >= meetingTime){
                     availableTime.add(availTime);
-                }
+            }          
         }       
         return availableTime;
     }
 }
+
