@@ -22,7 +22,7 @@ public class Greeter {
    * Returns a greeting for the given name.
    */
   public String greet(String name) {
-      name = name.replaceAll(" ","");
+      name = name.replaceAll("\\s","");
     return "Hello " + name;
   }
 }
